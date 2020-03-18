@@ -9,6 +9,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 let employeeArray = [];
 
+// define array of questions for inquirer
 const questionArray = [
     {
         type: 'list',
@@ -56,11 +57,12 @@ const questionArray = [
     },
 ]
 
-initPrompt(questionArray);
+initPrompt(questionArray);  // call inquirer
 
 function initPrompt(questions){
-    inquirer.prompt(questions).then(input => {
-        switch(input.type){
+    inquirer.prompt(questions).then(input => { 
+        switch(input.type){ // check what kind of employee user inputted
+            // add new employee of correct type to employeeArray
             case "manager":
                 employeeArray.push(new Manager(input.name, input.id, input.email, input.officeNumber));
             break
@@ -71,16 +73,17 @@ function initPrompt(questions){
                 employeeArray.push(new Intern(input.name, input.id, input.email, input.school));
             break
             default:
-                console.log("didnt get the question");
+                throw Error("something went wrong");
         }
-        if(input.add){
-            initPrompt(questionArray);
+        if(input.add){ //check if the user wants to add more employees
+            initPrompt(questionArray); //start prompt sequence over
         }else{
-            makeHTML();
+            makeHTML(); 
         }
     });
 }
 
+// render an html file from employee array and write it to an output folder
 function makeHTML(){
     let html = render(employeeArray);
     console.log("we ran makeHTML");
