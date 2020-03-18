@@ -15,8 +15,4 @@ Manager.prototype.getRole = function(){
 Manager.prototype.getOfficeNumber = function(){
     return this.officeNumber;
 }
-var man = new Manager("foo", 1, "jeremiah@jerome", 101);
-console.log(man.office);
-console.log(man.getOfficeNumber());
-
 module.exports = Manager;
