@@ -60,7 +60,6 @@ initPrompt(questionArray);
 
 function initPrompt(questions){
     inquirer.prompt(questions).then(input => {
-        // console.log(input);
         switch(input.type){
             case "manager":
                 employeeArray.push(new Manager(input.name, input.id, input.email, input.officeNumber));
@@ -74,7 +73,6 @@ function initPrompt(questions){
             default:
                 console.log("didnt get the question");
         }
-        // console.log(employeeArray);
         if(input.add){
             initPrompt(questionArray);
         }else{
@@ -84,8 +82,24 @@ function initPrompt(questions){
 }
 
 function makeHTML(){
-    render(employeeArray);
+    let html = render(employeeArray);
     console.log("we ran makeHTML");
+    if (fs.existsSync(OUTPUT_DIR)){
+        console.log('found the directory');
+        fs.writeFile(outputPath, html, err=>{
+            if(err){
+                console.log(err);
+            }
+        })
+    } else{
+        console.log('should have made a file');
+        fs.mkdirSync(OUTPUT_DIR);
+        fs.writeFile(outputPath, html, err=>{
+            if(err){
+                console.log(err);
+            }
+        })
+    }
 }
 
 // questionCount = results.count;
