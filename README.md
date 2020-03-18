@@ -15,11 +15,11 @@ run "node app" in same directory in terminal
 
 ## Screenshots
 
-![screenshot 1](/assets/screenshot1.png)
+![screenshot 1](/Assets/screenshot1.png)
 
-![screenshot 2](/assets/screenshot2.png)
+![screenshot 2](/Assets/screenshot2.png)
 
-![screenshot 3](/assets/screenshot3.png)
+![screenshot 3](/Assets/screenshot3.png)
 
 ## Acknowledgements
 
